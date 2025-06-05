@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yogesh Kumar - Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        /* Custom styles to override or enhance Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff; /* White theme background */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            cursor: auto; /* Ensure mouse pointer doesn't vanish */
+        }
+
+        /* Canvas for mouse trail */
+        #mouse-trail-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999; /* Ensure it's on top */
+            pointer-events: none; /* Allow clicks to pass through to elements below */
+        }
+
+        /* Smooth scroll for navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar for better aesthetics */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: #a8dadc; /* Light blue */
+            border-radius: 4px;
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: #457b9d; /* Slightly darker blue */
+        }
+
+        /* Ensure images are responsive within project cards */
+        .project-image {
+            width: 100%;
+            height: 200px; /* Fixed height for consistency */
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            border-radius: 0.5rem; /* Rounded corners for images */
+        }
+
+        /* Hover effect for project cards */
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Neon border effect for the hero image */
+        .neon-border-container {
+            position: relative;
+            padding: 5px; /* Padding for the shadow to appear around the image */
+            border-radius: 50%; /* Make it round */
+            box-shadow:
+                0 0 5px #a8dadc, /* Light blue */
+                0 0 10px #457b9d, /* Medium blue */
+                0 0 15px #1d3557, /* Dark blue */
+                0 0 20px #2a9d8f, /* Teal */
+                0 0 25px #264653; /* Darker Teal */
+            animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonGlow {
+            from {
+                box-shadow:
+                    0 0 5px #a8dadc,
+                    0 0 10px #457b9d,
+                    0 0 15px #1d3557,
+                    0 0 20px #2a9d8f,
+                    0 0 25px #264653;
+            }
+            to {
+                box-shadow:
+                    0 0 10px #a8dadc,
+                    0 0 20px #457b9d,
+                    0 0 30px #1d3557,
+                    0 0 40px #2a9d8f,
+                    0 0 50px #264653;
+            }
+        }
+
+        /* Styling for the dynamic text effect */
+        .dynamic-text {
+            min-height: 1.5em; /* Prevent layout shift during typing/erasing */
+            display: inline-block;
+            overflow: hidden; /* Hide overflowing text during typing */
+            white-space: nowrap; /* Keep text on one line */
+            border-right: 0.15em solid; /* Blinking cursor effect */
+            animation: typing-cursor 0.75s step-end infinite;
+        }
+
+        @keyframes typing-cursor {
+            from, to { border-color: transparent }
+            50% { border-color: #2a9d8f; } /* Teal cursor */
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Mouse Trail Canvas -->
+    <canvas id="mouse-trail-canvas"></canvas>
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm py-4 fixed w-full z-10 top-0">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800">Yogesh Kumar</a>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#projects" class="text-gray-600 hover:text-teal-500 transition duration-300">Projects</a></li>
+                    <li><a href="#about" class="text-gray-600 hover:text-teal-500 transition duration-300">About</a></li>
+                    <li><a href="#contact" class="text-gray-600 hover:text-teal-500 transition duration-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="mt-20">
+        <!-- Hero Section -->
+        <section id="hero" class="bg-white min-h-screen flex flex-col items-center justify-center py-16">
+            <div class="container mx-auto px-4 text-center">
+                <!-- Photo with Neon Border -->
+                <div class="mb-8 mt-12 md:mt-0 flex justify-center">
+                    <div class="neon-border-container">
+                        <img src="images/myphoto.png" alt="Yogesh Kumar Singh" class="rounded-full w-44 h-44 object-cover shadow-lg">
+                    </div>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4">
+                    Hello, I'm <span class="text-teal-500">Yogesh</span> &mdash;
+                </h1>
+                <p class="text-3xl md:text-5xl font-semibold text-gray-600 mb-4">
+                    <span id="dynamic-role" class="dynamic-text text-gray-600"></span>
+                </p>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-gray-700">
+                    I create engaging digital experiences with clean design and efficient code.
+                    Browse my projects below to see my work.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
+                    <a href="#projects" class="bg-gray-800 text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-700 transition duration-300 shadow-lg">
+                        View Projects
+                    </a>
+                    <a href="#contact" class="border border-gray-800 text-gray-800 px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-100 transition duration-300 shadow-lg">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="bg-blue-50 py-16 md:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800">My Projects</h2>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-gray-700">
+                    Explore a selection of my recent work. Each project showcases different skills and technologies.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/agrodx.png" alt="Agro-Dx" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Agro-Dx</h3>
+                        <p class="text-gray-600 mb-4">An GenAI powered plant disease detection system with custom build CNN model and weather APIs</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">CNN</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Firebase</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Gemini</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Map API</span>
+                        </div>
+                        <a href="https://agro-dx.onrender.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/khanasathi.png" alt="Khanasathi" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Khanasathi</h3>
+                        <p class="text-gray-600 mb-4">A fullstack platform to reduce food-waste by connecting restraunts and NGO on a gamified portal</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">CSS</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">JavaScript</span>
+                        </div>
+                        <a href="https://github.com/Coden-inja/KhanaSathi" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/climavisor.png" alt="ClimaVisor" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">ClimaVisor</h3>
+                        <p class="text-gray-600 mb-4">An interactive UI for viewing climate predictions in 3D globe environment</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">WebGL</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Weather API</span>
+                        </div>
+                        <a href="https://github.com/Coden-inja/ClimaVisor" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+
+                    <!-- Add more project cards as needed -->
+                     <!-- Project Card 4 -->
+                     <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/genquest.png" alt="GenQuest" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">GenQuest</h3>
+                        <p class="text-gray-600 mb-4">A exam prep helper by generating questions from uploaded pdf/ text query</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">AI integration</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Gemini</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Multimodal Chatbot</span>
+                        </div>
+                        <a href="https://github.com/Coden-inja/GenQuest" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+
+                    <!-- Project Card 5 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/artovalley.png" alt="Arto-Valley" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Arto-Valley</h3>
+                        <p class="text-gray-600 mb-4">A fully 3D 1st person experience to view 3D art pieces in a video game style</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">WebGL</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">WebSockets</span>
+                        </div>
+                        <a href="https://github.com/Coden-inja/ArtoValley" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+
+                    <!-- Project Card 6 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/bolthack.png" alt="BoltHack" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">BoltHack</h3>
+                        <p class="text-gray-600 mb-4">A website I made for Bolt hackathon using AI tools</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Vibe coded</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
+                        </div>
+                        <a href="https://zippy-zabaione-988440.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+                    <!-- Project Card 7 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/whizchat.png" alt="Whizchat" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Whizchat</h3>
+                        <p class="text-gray-600 mb-4">A Whatsapp clone website I made using AI tools</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Vibe coded</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Whatsapp</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
+                        </div>
+                        <a href="https://whizchat-2-0.lovable.app" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+                    <!-- Project Card 8 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/VoiceSphere.png" alt="VoiceSphere" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">VoiceSphere</h3>
+                        <p class="text-gray-600 mb-4">A chatroom website I made using AI tools</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Vibe coded</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Music</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
+                        </div>
+                        <a href="https://fantastic-wisp-db2b58.netlify.app" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+                    <!-- Project Card 9 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/amusify.png" alt="Amusify" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Amusify</h3>
+                        <p class="text-gray-600 mb-4">A music website I made using AI tools</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Vibe coded</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Spotify</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
+                        </div>
+                        <a href="https://resilient-starburst-3e8add.netlify.app" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+                    <!-- Project Card 10 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/mideo.png" alt="Mideo" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Mideo</h3>
+                        <p class="text-gray-600 mb-4">A shorts video website I made using AI tools</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Vibe coded</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Tiktok</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
+                        </div>
+                        <a href="https://cheery-hamster-b7de54.netlify.app" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+                    <!-- Project Card 11 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/netflix.png" alt="Netflix-Clone" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Netflix-Clone</h3>
+                        <p class="text-gray-600 mb-4">A Netflix clone website of the older version</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Netflix</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
+                        </div>
+                        <a href="https://extraordinary-gumdrop-0ecc79.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+                    <!-- Project Card 12 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/blocky.png" alt="Blocky" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Blocky</h3>
+                        <p class="text-gray-600 mb-4">A blocks game with collect and win logic. Also contains game bots</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Minecraft</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">WebGL</span>
+                        </div>
+                        <a href="https://golden-taiyaki-8b7221.netlify.app" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Project &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="bg-white py-16 md:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800">About Me</h2>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-gray-700">
+                    Get to know more about my background, skills, and what drives me as a developer.
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 text-left">
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-6 text-gray-800">My Journey</h3>
+                        <p class="mb-4 text-gray-700 leading-relaxed">
+                            I am a passionate developer with a focus on creating clean, elegant and functional web applications.
+                            With a strong foundation in both design and development, I bring a unique perspective to every project.
+                        </p>
+                        <p class="mb-4 text-gray-700 leading-relaxed">
+                            My journey in technology began with curiosity about how things work, which led me to pursue formal
+                            education in computer science. Since then, I've been constantly learning and adapting to the
+                            ever-changing landscape of web development. Currently I am into AI and Machine learning technologies, exploring how they can revolutionize the way we interact with the digital world.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            When I'm not coding, you can find me exploring new technologies, contributing to open-source projects,
+                            or sharing my knowledge with the community through my blog and social media.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-semibold mb-6 text-gray-800">My Skills</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-medium text-gray-700">JavaScript</span>
+                                    <span class="text-lg font-medium text-gray-700">90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-medium text-gray-700">HTML</span>
+                                    <span class="text-lg font-medium text-gray-700">90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 95%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-medium text-gray-700">CSS</span>
+                                    <span class="text-lg font-medium text-gray-700">80%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 80%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-medium text-gray-700">JavaScript</span>
+                                    <span class="text-lg font-medium text-gray-700">70%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-medium text-gray-700">FLASK</span>
+                                    <span class="text-lg font-medium text-gray-700">65%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-medium text-gray-700">API</span>
+                                    <span class="text-lg font-medium text-gray-700">60%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-medium text-gray-700">Three.js</span>
+                                    <span class="text-lg font-medium text-gray-700">30%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 30%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-medium text-gray-700">Git & GitHub</span>
+                                    <span class="text-lg font-medium text-gray-700">60%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Me Section -->
+        <section id="contact" class="bg-blue-50 py-16 md:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Get In Touch</h2>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-gray-700">
+                    Feel free to reach out for collaborations, opportunities, or just to say hello.
+                </p>
+
+                <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
+                    <div class="flex flex-wrap justify-center gap-4 mb-6">
+                        <a href="https://github.com/Coden-inja" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">GitHub</a>
+                        <a href="https://www.linkedin.com/in/yogesh-kumar-299298260/" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">LinkedIn</a>
+                        <a href="https://x.com/Yoges_ai" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Twitter</a>
+                        <a href="fbyogesh111@gmail.com" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Email</a>
+                        <a href="https://peerlist.io/yoges" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Peerlist</a>
+                        <a href="https://linktr.ee/yogesh.kumar.singh" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Linktree</a>
+                    </div>
+                    <!-- You can add a contact form here if needed -->
+                    <!--
+                    <form class="space-y-4">
+                        <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 outline-none">
+                        <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 outline-none">
+                        <textarea placeholder="Your Message" rows="5" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-teal-500 outline-none"></textarea>
+                        <button type="submit" class="w-full bg-teal-500 text-white px-6 py-3 rounded-md font-medium hover:bg-teal-600 transition duration-300">Send Message</button>
+                    </form>
+                    -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Yogesh Kumar Singh. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Three.js Mouse Trail Script
+        window.onload = function() {
+            const canvas = document.getElementById('mouse-trail-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true }); // alpha: true for transparent background
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio); // Improve clarity on high-DPI screens
+
+            camera.position.z = 5;
+
+            const particles = [];
+            const particleCount = 500; // Increased particle count for denser trail
+            const particleSize = 0.12; // Slightly larger particles
+            const particleSpeed = 0.05; // Speed at which particles fade and shrink
+            const particleLifetime = 150; // Increased lifetime for longer visibility
+
+            // Define a more vibrant color gradient for the trail
+            const colors = [
+                new THREE.Color(0x66ccff), // Bright light blue
+                new THREE.Color(0x00c5cd), // Vibrant teal
+                new THREE.Color(0x008b8b), // Dark cyan
+                new THREE.Color(0x0000ff), // Pure blue
+                new THREE.Color(0x39ff14), // Neon green
+                new THREE.Color(0xff69b4), // Hot pink
+                new THREE.Color(0xffd700)  // Gold
+            ];
+
+            // Function to get a random color from the gradient
+            function getRandomColor() {
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            // Mouse position tracking
+            const mouse = new THREE.Vector2();
+            const targetMouse = new THREE.Vector2(); // Target for smoothed mouse movement
+
+            document.addEventListener('mousemove', (event) => {
+                targetMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+                targetMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+                // Add a new particle at the mouse position
+                const geometry = new THREE.SphereGeometry(particleSize, 8, 8); // Low poly for performance
+                const material = new THREE.MeshBasicMaterial({
+                    color: getRandomColor(),
+                    transparent: true,
+                    opacity: 1 // Initial opacity is 1
+                });
+                const particle = new THREE.Mesh(geometry, material);
+
+                // Convert mouse NDC to world coordinates
+                const vector = new THREE.Vector3(targetMouse.x, targetMouse.y, 0.5);
+                vector.unproject(camera);
+                const dir = vector.sub(camera.position).normalize();
+                const distance = -camera.position.z / dir.z;
+                const pos = camera.position.clone().add(dir.multiplyScalar(distance));
+
+                particle.position.copy(pos);
+                particle.userData = {
+                    lifetime: particleLifetime,
+                    initialScale: particleSize,
+                    velocity: new THREE.Vector3(
+                        (Math.random() - 0.5) * 0.03, // Increased random movement for dispersion
+                        (Math.random() - 0.5) * 0.03,
+                        0
+                    )
+                }; // Store lifetime for fading effect
+
+                particles.push(particle);
+                scene.add(particle);
+
+                // Limit the number of particles
+                if (particles.length > particleCount) {
+                    const oldParticle = particles.shift();
+                    scene.remove(oldParticle);
+                    oldParticle.geometry.dispose();
+                    oldParticle.material.dispose();
+                }
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Smoothly interpolate mouse position
+                mouse.x += (targetMouse.x - mouse.x) * 0.1;
+                mouse.y += (targetMouse.y - mouse.y) * 0.1;
+
+                // Update particles
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const particle = particles[i];
+
+                    // Move particle slightly
+                    particle.position.add(particle.userData.velocity);
+
+                    // Decrease lifetime
+                    particle.userData.lifetime--;
+
+                    // Fade and shrink particle
+                    const ratio = particle.userData.lifetime / particleLifetime;
+                    // Ensure opacity is still visible even when fading
+                    particle.material.opacity = Math.max(0.2, ratio * 1.0);
+                    particle.scale.setScalar(particle.userData.initialScale * ratio);
+
+                    // Remove particle if lifetime is over
+                    if (particle.userData.lifetime <= 0) {
+                        particles.splice(i, 1);
+                        scene.remove(particle);
+                        particle.geometry.dispose();
+                        particle.material.dispose();
+                    }
+                }
+
+                renderer.render(scene, camera);
+            }
+
+            animate(); // Start the animation loop
+
+            // Handle window resizing
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+
+
+            // Dynamic Typing Effect Script
+            const dynamicRoleElement = document.getElementById('dynamic-role');
+            const roles = ["GenAI Expert","Designer", "Developer", "Innovator", "Problem Solver", "Machine Learning", "Open Source"];
+            let roleIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            const typingSpeed = 100; // milliseconds per character
+            const erasingSpeed = 50; // milliseconds per character
+            const delayBetweenRoles = 1500; // milliseconds before typing next role
+
+            function typeWriter() {
+                const currentRole = roles[roleIndex];
+                if (isDeleting) {
+                    dynamicRoleElement.textContent = currentRole.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    dynamicRoleElement.textContent = currentRole.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                let speed = isDeleting ? erasingSpeed : typingSpeed;
+
+                if (!isDeleting && charIndex === currentRole.length) {
+                    speed = delayBetweenRoles;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                    speed = typingSpeed;
+                }
+
+                setTimeout(typeWriter, speed);
+            }
+
+            typeWriter(); // Start the dynamic typing effect
+        };
+    </script>
+</body>
+</html>
