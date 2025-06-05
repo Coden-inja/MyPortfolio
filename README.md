@@ -11,7 +11,7 @@ First do these in your terminal in your project directory
     1. git init
     2. git add .
     3. git commit -m "Initial commit"
-    4. git remote add origin https://github.com/username/repository.git, where https://github.com/username/     repository.git
+    4. git remote add origin https://github.com/username/repository.git
     5. git push -u origin main
 
 Then you can login to Netlify to make it live and sharable with a link!
