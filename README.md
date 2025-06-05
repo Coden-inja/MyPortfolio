@@ -1,17 +1,25 @@
-###Want to make your own portfolio in seconds?
-   1. Clone the project
-   2. Change you name
-   3. Add your photos
-   4. Add your project links
-   5. Add your contact links
+#Want to make Your Own Portfolio in Seconds ?
 
-##Congrats you got it, now publish it on Netlify !!!
+### Steps to Get Started
 
-First do these in your terminal in your project directory
-    1. git init
-    2. git add .
-    3. git commit -m "Initial commit"
-    4. git remote add origin https://github.com/username/repository.git
-    5. git push -u origin main
+1. Clone the project  
+2. Change your name  
+3. Add your photos  
+4. Add your project links  
+5. Add your contact links  
 
-Then you can login to Netlify to make it live and sharable with a link!
+---
+
+## 🎉 Congrats! You're Ready to Publish on Netlify
+
+### Run the following commands in your terminal (inside the project directory):
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/username/repository.git
+git push -u origin main
+
+```
+Now publish it on your Netlify account or Github pages.
