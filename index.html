@@ -18,7 +18,7 @@
             /* White theme background */
             overflow-x: hidden;
             /* Prevent horizontal scroll */
-            cursor: auto;
+            cursor: none;
             /* Ensure mouse pointer doesn't vanish */
         }
 
@@ -533,6 +533,8 @@
 
     <script>
         // Three.js Mouse Trail Script
+        let targetRotation = 0;
+        let lastFishPos = new THREE.Vector3();
         window.onload = function () {
             const canvas = document.getElementById('mouse-trail-canvas');
             const scene = new THREE.Scene();
@@ -543,22 +545,22 @@
 
             camera.position.z = 5;
 
-            const particles = [];
-            const particleCount = 500; // Increased particle count for denser trail
-            const particleSize = 0.12; // Slightly larger particles
-            const particleSpeed = 0.05; // Speed at which particles fade and shrink
-            const particleLifetime = 150; // Increased lifetime for longer visibility
+            // const particles = [];
+            // const particleCount = 500; // Increased particle count for denser trail
+            // const particleSize = 0.12; // Slightly larger particles
+            // const particleSpeed = 0.05; // Speed at which particles fade and shrink
+            // const particleLifetime = 150; // Increased lifetime for longer visibility
 
             // Define a more vibrant color gradient for the trail
-            const colors = [
-                new THREE.Color(0x66ccff), // Bright light blue
-                new THREE.Color(0x00c5cd), // Vibrant teal
-                new THREE.Color(0x008b8b), // Dark cyan
-                new THREE.Color(0x0000ff), // Pure blue
-                new THREE.Color(0x39ff14), // Neon green
-                new THREE.Color(0xff69b4), // Hot pink
-                new THREE.Color(0xffd700)  // Gold
-            ];
+            // const colors = [
+            //     new THREE.Color(0x66ccff), // Bright light blue
+            //     new THREE.Color(0x00c5cd), // Vibrant teal
+            //     new THREE.Color(0x008b8b), // Dark cyan
+            //     new THREE.Color(0x0000ff), // Pure blue
+            //     new THREE.Color(0x39ff14), // Neon green
+            //     new THREE.Color(0xff69b4), // Hot pink
+            //     new THREE.Color(0xffd700)  // Gold
+            // ];
 
             // Function to get a random color from the gradient
             // function getRandomColor() {
@@ -574,7 +576,7 @@
             //     targetMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
             //     // Add a new particle at the mouse position
-                
+
             //     const geometry = new THREE.SphereGeometry(particleSize, 8, 8); // Low poly for performance
             //     const material = new THREE.MeshBasicMaterial({
             //         color: getRandomColor(),
@@ -614,7 +616,7 @@
             // });
 
             // function animate() {
-            //     requestAnimationFrame(animate);
+            // requestAnimationFrame(animate);
 
             //     // Smoothly interpolate mouse position
             //     mouse.x += (targetMouse.x - mouse.x) * 0.1;
@@ -645,12 +647,72 @@
             //         }
             //     }
 
-            //     renderer.render(scene, camera);
+            // renderer.render(scene, camera);
             // }
 
             // animate(); // Start the animation loop
 
             // Handle window resizing
+
+
+
+            // Load fish texture
+            const textureLoader = new THREE.TextureLoader();
+            const fishTexture = textureLoader.load('images/fish.png'); // use your own fish image if needed
+
+            // Create fish sprite
+            const fishMaterial = new THREE.SpriteMaterial({ map: fishTexture, transparent: true });
+            const fish = new THREE.Sprite(fishMaterial);
+            fish.scale.set(0.7, 0.5, 0.5); // adjust size
+            scene.add(fish);
+
+            // Setup raycaster and mouse tracking
+            const raycaster = new THREE.Raycaster();
+            const mouse = new THREE.Vector2();
+            const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); // z=0 plane
+
+            let lastX = 0;
+            let targetRotation = 0;
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                // Smoothly rotate fish toward target direction
+                fish.material.rotation += (targetRotation - fish.material.rotation) * 0.01;
+
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('mousemove', (event) => {
+                // Convert mouse to NDC
+                mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+                mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+                // Cast ray and intersect with z=0 plane
+                raycaster.setFromCamera(mouse, camera);
+                const intersection = new THREE.Vector3();
+                raycaster.ray.intersectPlane(plane, intersection);
+
+                // Calculate direction of movement
+                const dx = intersection.x - lastFishPos.x;
+                const dy = intersection.y - lastFishPos.y;
+                targetRotation = Math.atan2(dy, dx);
+
+                // Flip based on mouse X
+                const dir = event.clientX > lastX ? 1 : -1;
+                fish.scale.x = Math.abs(fish.scale.x) * dir;
+                lastX = event.clientX;
+
+                // Move fish
+                fish.position.copy(intersection);
+                lastFishPos.copy(intersection);
+            });
+
+
+
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
