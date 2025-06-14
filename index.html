@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,20 +14,26 @@
         /* Custom styles to override or enhance Tailwind */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff; /* White theme background */
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            cursor: auto; /* Ensure mouse pointer doesn't vanish */
+            background-color: #ffffff;
+            /* White theme background */
+            overflow-x: hidden;
+            /* Prevent horizontal scroll */
+            cursor: auto;
+            /* Ensure mouse pointer doesn't vanish */
         }
 
         /* Canvas for mouse trail */
         #mouse-trail-canvas {
+            cursor: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 9999; /* Ensure it's on top */
-            pointer-events: none; /* Allow clicks to pass through to elements below */
+            z-index: 9999;
+            /* Ensure it's on top */
+            pointer-events: none;
+            /* Allow clicks to pass through to elements below */
         }
 
         /* Smooth scroll for navigation */
@@ -44,20 +51,25 @@
         }
 
         body::-webkit-scrollbar-thumb {
-            background: #a8dadc; /* Light blue */
+            background: #a8dadc;
+            /* Light blue */
             border-radius: 4px;
         }
 
         body::-webkit-scrollbar-thumb:hover {
-            background: #457b9d; /* Slightly darker blue */
+            background: #457b9d;
+            /* Slightly darker blue */
         }
 
         /* Ensure images are responsive within project cards */
         .project-image {
             width: 100%;
-            height: 200px; /* Fixed height for consistency */
-            object-fit: cover; /* Cover the area, cropping if necessary */
-            border-radius: 0.5rem; /* Rounded corners for images */
+            height: 200px;
+            /* Fixed height for consistency */
+            object-fit: cover;
+            /* Cover the area, cropping if necessary */
+            border-radius: 0.5rem;
+            /* Rounded corners for images */
         }
 
         /* Hover effect for project cards */
@@ -69,14 +81,21 @@
         /* Neon border effect for the hero image */
         .neon-border-container {
             position: relative;
-            padding: 5px; /* Padding for the shadow to appear around the image */
-            border-radius: 50%; /* Make it round */
+            padding: 5px;
+            /* Padding for the shadow to appear around the image */
+            border-radius: 50%;
+            /* Make it round */
             box-shadow:
-                0 0 5px #a8dadc, /* Light blue */
-                0 0 10px #457b9d, /* Medium blue */
-                0 0 15px #1d3557, /* Dark blue */
-                0 0 20px #2a9d8f, /* Teal */
-                0 0 25px #264653; /* Darker Teal */
+                0 0 5px #a8dadc,
+                /* Light blue */
+                0 0 10px #457b9d,
+                /* Medium blue */
+                0 0 15px #1d3557,
+                /* Dark blue */
+                0 0 20px #2a9d8f,
+                /* Teal */
+                0 0 25px #264653;
+            /* Darker Teal */
             animation: neonGlow 2s ease-in-out infinite alternate;
         }
 
@@ -89,6 +108,7 @@
                     0 0 20px #2a9d8f,
                     0 0 25px #264653;
             }
+
             to {
                 box-shadow:
                     0 0 10px #a8dadc,
@@ -101,20 +121,34 @@
 
         /* Styling for the dynamic text effect */
         .dynamic-text {
-            min-height: 1.5em; /* Prevent layout shift during typing/erasing */
+            min-height: 1.5em;
+            /* Prevent layout shift during typing/erasing */
             display: inline-block;
-            overflow: hidden; /* Hide overflowing text during typing */
-            white-space: nowrap; /* Keep text on one line */
-            border-right: 0.15em solid; /* Blinking cursor effect */
+            overflow: hidden;
+            /* Hide overflowing text during typing */
+            white-space: nowrap;
+            /* Keep text on one line */
+            border-right: 0.15em solid;
+            /* Blinking cursor effect */
             animation: typing-cursor 0.75s step-end infinite;
         }
 
         @keyframes typing-cursor {
-            from, to { border-color: transparent }
-            50% { border-color: #2a9d8f; } /* Teal cursor */
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: #2a9d8f;
+            }
+
+            /* Teal cursor */
         }
     </style>
 </head>
+
 <body class="text-gray-800">
     <!-- Mouse Trail Canvas -->
     <canvas id="mouse-trail-canvas"></canvas>
@@ -125,9 +159,12 @@
             <a href="#" class="text-2xl font-bold text-gray-800">Yogesh Kumar</a>
             <nav>
                 <ul class="flex space-x-6">
-                    <li><a href="#projects" class="text-gray-600 hover:text-teal-500 transition duration-300">Projects</a></li>
-                    <li><a href="#about" class="text-gray-600 hover:text-teal-500 transition duration-300">About</a></li>
-                    <li><a href="#contact" class="text-gray-600 hover:text-teal-500 transition duration-300">Contact</a></li>
+                    <li><a href="#projects"
+                            class="text-gray-600 hover:text-teal-500 transition duration-300">Projects</a></li>
+                    <li><a href="#about" class="text-gray-600 hover:text-teal-500 transition duration-300">About</a>
+                    </li>
+                    <li><a href="#contact" class="text-gray-600 hover:text-teal-500 transition duration-300">Contact</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -140,7 +177,8 @@
                 <!-- Photo with Neon Border -->
                 <div class="mb-8 mt-12 md:mt-0 flex justify-center">
                     <div class="neon-border-container">
-                        <img src="images/myphoto.png" alt="Yogesh Kumar Singh" class="rounded-full w-44 h-44 object-cover shadow-lg">
+                        <img src="images/myphoto.png" alt="Yogesh Kumar Singh"
+                            class="rounded-full w-44 h-44 object-cover shadow-lg">
                     </div>
                 </div>
 
@@ -155,10 +193,12 @@
                     Browse my projects below to see my work.
                 </p>
                 <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-                    <a href="#projects" class="bg-gray-800 text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-700 transition duration-300 shadow-lg">
+                    <a href="#projects"
+                        class="bg-gray-800 text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-700 transition duration-300 shadow-lg">
                         View Projects
                     </a>
-                    <a href="#contact" class="border border-gray-800 text-gray-800 px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-100 transition duration-300 shadow-lg">
+                    <a href="#contact"
+                        class="border border-gray-800 text-gray-800 px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-100 transition duration-300 shadow-lg">
                         Contact Me
                     </a>
                 </div>
@@ -178,128 +218,156 @@
                     <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/agrodx.png" alt="Agro-Dx" class="project-image mb-4">
                         <h3 class="text-2xl font-semibold mb-2 text-gray-800">Agro-Dx</h3>
-                        <p class="text-gray-600 mb-4">A GenAI powered plant disease detection system with custom build CNN model, weather, maps APIs, deployed on render.</p>
+                        <p class="text-gray-600 mb-4">A GenAI powered plant disease detection system with custom build
+                            CNN model, weather, maps APIs, deployed on render.</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">CNN</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Firebase</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Gemini</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Map API</span>
                         </div>
-                        <a href="https://agro-dx.onrender.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                        <a href="https://agro-dx.onrender.com/" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
                     </div>
 
                     <!-- Project Card 2 -->
                     <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/khanasathi.png" alt="Khanasathi" class="project-image mb-4">
                         <h3 class="text-2xl font-semibold mb-2 text-gray-800">Khanasathi</h3>
-                        <p class="text-gray-600 mb-4">A food-waste reduction portal for Restraunts and NGO. Xgboost model for prediction and insights for Order Optimization</p>
+                        <p class="text-gray-600 mb-4">A food-waste reduction portal for Restraunts and NGO. Xgboost
+                            model for prediction and insights for Order Optimization</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML| CSS| JS</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">PostgreSQl | FLask</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">PostgreSQl |
+                                FLask</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">ML</span>
                         </div>
-                        <a href="https://github.com/Coden-inja/KhanaSathi" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Source &rarr;</a>
+                        <a href="https://github.com/Coden-inja/KhanaSathi" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-600 hover:underline text-sm font-medium">View Source &rarr;</a>
                     </div>
 
                     <!-- Project Card 3 -->
                     <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/climavisor.png" alt="ClimaVisor" class="project-image mb-4">
                         <h3 class="text-2xl font-semibold mb-2 text-gray-800">ClimaVisor</h3>
-                        <p class="text-gray-600 mb-4">Climate predictions in 3D globe environment. Separate dashboards for weather predictions and visualization of historical data</p>
+                        <p class="text-gray-600 mb-4">Climate predictions in 3D globe environment. Separate dashboards
+                            for weather predictions and visualization of historical data</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">WebGL</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Weather API</span>
                         </div>
-                        <a href="https://clima-visor.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                        <a href="https://clima-visor.vercel.app/" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
                     </div>
 
                     <!-- Add more project cards as needed -->
-                     <!-- Project Card 4 -->
-                     <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                    <!-- Project Card 4 -->
+                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/genquest.png" alt="GenQuest" class="project-image mb-4">
                         <h3 class="text-2xl font-semibold mb-2 text-gray-800">GenQuest</h3>
-                        <p class="text-gray-600 mb-4">An Exam-prep helper for generating questions from uploaded pdf/ text query. With dark and light mode, no PDF limit.</p>
+                        <p class="text-gray-600 mb-4">An Exam-prep helper for generating questions from uploaded pdf/
+                            text query. With dark and light mode, no PDF limit.</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Flask</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Gemini</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Multimodal Chatbot</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Multimodal
+                                Chatbot</span>
                         </div>
-                        <a href="https://github.com/Coden-inja/GenQuest" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Source &rarr;</a>
+                        <a href="https://github.com/Coden-inja/GenQuest" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-600 hover:underline text-sm font-medium">View Source &rarr;</a>
                     </div>
 
                     <!-- Project Card 5 -->
                     <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/artovalley.png" alt="Arto-Valley" class="project-image mb-4">
                         <h3 class="text-2xl font-semibold mb-2 text-gray-800">Arto-Valley</h3>
-                        <p class="text-gray-600 mb-4">A fully 3D first person game to navigate in a futuristic valley of 3D art pieces. No GPU required for rendering</p>
+                        <p class="text-gray-600 mb-4">A fully 3D first person game to navigate in a futuristic valley of
+                            3D art pieces. No GPU required for rendering</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">WebGL</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Go lang</span>
                         </div>
-                        <a href="https://github.com/Coden-inja/ArtoValley" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Source &rarr;</a>
+                        <a href="https://github.com/Coden-inja/ArtoValley" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-600 hover:underline text-sm font-medium">View Source &rarr;</a>
                     </div>
 
                     <!-- Project Card 6 -->
                     <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/bolthack.png" alt="BoltHack" class="project-image mb-4">
                         <h3 class="text-2xl font-semibold mb-2 text-gray-800">BoltHack</h3>
-                        <p class="text-gray-600 mb-4">A custom website for World's biggest hackathon from Bolt using its own platform. With cyberpunk theme and 3D models</p>
+                        <p class="text-gray-600 mb-4">A custom website for World's biggest hackathon from Bolt using its
+                            own platform. With cyberpunk theme and 3D models</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS | JS</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS |
+                                JS</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
                         </div>
-                        <a href="https://zippy-zabaione-988440.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                        <a href="https://zippy-zabaione-988440.netlify.app/" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
                     </div>
                     <!-- Project Card 7 -->
                     <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/whizchat.png" alt="Whizchat" class="project-image mb-4">
                         <h3 class="text-2xl font-semibold mb-2 text-gray-800">Whizchat</h3>
-                        <p class="text-gray-600 mb-4">A Whatsapp clone with Chatbots having pre-defined replies for real feel. Made for lovable UI hackathon using its own platform </p>
+                        <p class="text-gray-600 mb-4">A Whatsapp clone with Chatbots having pre-defined replies for real
+                            feel. Made for lovable UI hackathon using its own platform </p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS | JS</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS |
+                                JS</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Whatsapp</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
                         </div>
-                        <a href="https://whizchat-2-0.lovable.app" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                        <a href="https://whizchat-2-0.lovable.app" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
                     </div>
                     <!-- Project Card 8 -->
                     <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/VoiceSphere.png" alt="VoiceSphere" class="project-image mb-4">
                         <h3 class="text-2xl font-semibold mb-2 text-gray-800">VoiceSphere</h3>
-                        <p class="text-gray-600 mb-4">A Chatroom for music enthusiasts. Voicechats, messages with premium and free group. Available in Light and Dark mode </p>
+                        <p class="text-gray-600 mb-4">A Chatroom for music enthusiasts. Voicechats, messages with
+                            premium and free group. Available in Light and Dark mode </p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS | Js</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS |
+                                Js</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Music</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
                         </div>
-                        <a href="https://fantastic-wisp-db2b58.netlify.app" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                        <a href="https://fantastic-wisp-db2b58.netlify.app" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
                     </div>
                     <!-- Project Card 9 -->
                     <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/amusify.png" alt="Mideo" class="project-image mb-4">
                         <h3 class="text-2xl font-semibold mb-2 text-gray-800">Amusify</h3>
-                        <p class="text-gray-600 mb-4">A next gen Spotify clone for listening to AI generated music. Graphic mousetrail for improving user experience</p>
+                        <p class="text-gray-600 mb-4">A next gen Spotify clone for listening to AI generated music.
+                            Graphic mousetrail for improving user experience</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS | JS</span>
+                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS |
+                                JS</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Tiktok</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
                         </div>
-                        <a href="https://resilient-starburst-3e8add.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                        <a href="https://resilient-starburst-3e8add.netlify.app/" target="_blank"
+                            rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View
+                            Live &rarr;</a>
                     </div>
                     <!-- Project Card 10 -->
                     <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/netflix.png" alt="Netflix-Clone" class="project-image mb-4">
                         <h3 class="text-2xl font-semibold mb-2 text-gray-800">Netflix-Clone</h3>
-                        <p class="text-gray-600 mb-4">My first ever project on Web-dev. A Netflix clone website of the older version. Has images, videos, even Fonts just like Netflix</p>
+                        <p class="text-gray-600 mb-4">My first ever project on Web-dev. A Netflix clone website of the
+                            older version. Has images, videos, even Fonts just like Netflix</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Netflix</span>
                             <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
                         </div>
-                        <a href="https://extraordinary-gumdrop-0ecc79.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                        <a href="https://extraordinary-gumdrop-0ecc79.netlify.app/" target="_blank"
+                            rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View
+                            Live &rarr;</a>
                     </div>
                 </div>
             </div>
@@ -317,16 +385,22 @@
                     <div>
                         <h3 class="text-3xl font-semibold mb-6 text-gray-800">My Journey</h3>
                         <p class="mb-4 text-gray-700 leading-relaxed">
-                            I am a passionate developer with a focus on creating clean, elegant and functional web applications.
-                            With a strong foundation in both design and development, I bring a unique perspective to every project.
+                            I am a passionate developer with a focus on creating clean, elegant and functional web
+                            applications.
+                            With a strong foundation in both design and development, I bring a unique perspective to
+                            every project.
                         </p>
                         <p class="mb-4 text-gray-700 leading-relaxed">
-                            My journey in technology began with curiosity about how things work, which led me to pursue formal
+                            My journey in technology began with curiosity about how things work, which led me to pursue
+                            formal
                             education in computer science. Since then, I've been constantly learning and adapting to the
-                            ever-changing landscape of web development. Currently I am into AI and Machine learning technologies, exploring how they can revolutionize the way we interact with the digital world.
+                            ever-changing landscape of web development. Currently I am into AI and Machine learning
+                            technologies, exploring how they can revolutionize the way we interact with the digital
+                            world.
                         </p>
                         <p class="text-gray-700 leading-relaxed">
-                            When I'm not coding, you can find me exploring new technologies, contributing to open-source projects,
+                            When I'm not coding, you can find me exploring new technologies, contributing to open-source
+                            projects,
                             or sharing my knowledge with the community through my blog and social media.
                         </p>
                     </div>
@@ -422,12 +496,19 @@
 
                 <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
                     <div class="flex flex-wrap justify-center gap-4 mb-6">
-                        <a href="https://github.com/Coden-inja" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">GitHub</a>
-                        <a href="https://www.linkedin.com/in/yogesh-kumar-299298260/" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">LinkedIn</a>
-                        <a href="https://x.com/Yoges_ai" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Twitter</a>
-                        <a href="fbyogesh111@gmail.com" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Email</a>
-                        <a href="https://peerlist.io/yoges" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Peerlist</a>
-                        <a href="https://linktr.ee/yogesh.kumar.singh" target="_blank" rel="noopener noreferrer" class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Linktree</a>
+                        <a href="https://github.com/Coden-inja" target="_blank" rel="noopener noreferrer"
+                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">GitHub</a>
+                        <a href="https://www.linkedin.com/in/yogesh-kumar-299298260/" target="_blank"
+                            rel="noopener noreferrer"
+                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">LinkedIn</a>
+                        <a href="https://x.com/Yoges_ai" target="_blank" rel="noopener noreferrer"
+                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Twitter</a>
+                        <a href="fbyogesh111@gmail.com" target="_blank" rel="noopener noreferrer"
+                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Email</a>
+                        <a href="https://peerlist.io/yoges" target="_blank" rel="noopener noreferrer"
+                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Peerlist</a>
+                        <a href="https://linktr.ee/yogesh.kumar.singh" target="_blank" rel="noopener noreferrer"
+                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Linktree</a>
                     </div>
                     <!-- You can add a contact form here if needed -->
                     <!--
@@ -446,13 +527,13 @@
     <!-- Footer Section -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2025 Yogesh Kumar Singh. All rights reserved.</p>
+            <p>&copy; 2025 Yogesh Kumar | All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         // Three.js Mouse Trail Script
-        window.onload = function() {
+        window.onload = function () {
             const canvas = document.getElementById('mouse-trail-canvas');
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -480,93 +561,94 @@
             ];
 
             // Function to get a random color from the gradient
-            function getRandomColor() {
-                return colors[Math.floor(Math.random() * colors.length)];
-            }
+            // function getRandomColor() {
+            //     return colors[Math.floor(Math.random() * colors.length)];
+            // }
 
-            // Mouse position tracking
-            const mouse = new THREE.Vector2();
-            const targetMouse = new THREE.Vector2(); // Target for smoothed mouse movement
+            // // Mouse position tracking
+            // const mouse = new THREE.Vector2();
+            // const targetMouse = new THREE.Vector2(); // Target for smoothed mouse movement
 
-            document.addEventListener('mousemove', (event) => {
-                targetMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-                targetMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+            // document.addEventListener('mousemove', (event) => {
+            //     targetMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            //     targetMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-                // Add a new particle at the mouse position
-                const geometry = new THREE.SphereGeometry(particleSize, 8, 8); // Low poly for performance
-                const material = new THREE.MeshBasicMaterial({
-                    color: getRandomColor(),
-                    transparent: true,
-                    opacity: 1 // Initial opacity is 1
-                });
-                const particle = new THREE.Mesh(geometry, material);
+            //     // Add a new particle at the mouse position
+                
+            //     const geometry = new THREE.SphereGeometry(particleSize, 8, 8); // Low poly for performance
+            //     const material = new THREE.MeshBasicMaterial({
+            //         color: getRandomColor(),
+            //         transparent: true,
+            //         opacity: 1 // Initial opacity is 1
+            //     });
+            //     const particle = new THREE.Mesh(geometry, material);
 
-                // Convert mouse NDC to world coordinates
-                const vector = new THREE.Vector3(targetMouse.x, targetMouse.y, 0.5);
-                vector.unproject(camera);
-                const dir = vector.sub(camera.position).normalize();
-                const distance = -camera.position.z / dir.z;
-                const pos = camera.position.clone().add(dir.multiplyScalar(distance));
+            //     // Convert mouse NDC to world coordinates
+            //     const vector = new THREE.Vector3(targetMouse.x, targetMouse.y, 0.5);
+            //     vector.unproject(camera);
+            //     const dir = vector.sub(camera.position).normalize();
+            //     const distance = -camera.position.z / dir.z;
+            //     const pos = camera.position.clone().add(dir.multiplyScalar(distance));
 
-                particle.position.copy(pos);
-                particle.userData = {
-                    lifetime: particleLifetime,
-                    initialScale: particleSize,
-                    velocity: new THREE.Vector3(
-                        (Math.random() - 0.5) * 0.03, // Increased random movement for dispersion
-                        (Math.random() - 0.5) * 0.03,
-                        0
-                    )
-                }; // Store lifetime for fading effect
+            //     particle.position.copy(pos);
+            //     particle.userData = {
+            //         lifetime: particleLifetime,
+            //         initialScale: particleSize,
+            //         velocity: new THREE.Vector3(
+            //             (Math.random() - 0.5) * 0.03, // Increased random movement for dispersion
+            //             (Math.random() - 0.5) * 0.03,
+            //             0
+            //         )
+            //     }; // Store lifetime for fading effect
 
-                particles.push(particle);
-                scene.add(particle);
+            //     particles.push(particle);
+            //     scene.add(particle);
 
-                // Limit the number of particles
-                if (particles.length > particleCount) {
-                    const oldParticle = particles.shift();
-                    scene.remove(oldParticle);
-                    oldParticle.geometry.dispose();
-                    oldParticle.material.dispose();
-                }
-            });
+            //     // Limit the number of particles
+            //     if (particles.length > particleCount) {
+            //         const oldParticle = particles.shift();
+            //         scene.remove(oldParticle);
+            //         oldParticle.geometry.dispose();
+            //         oldParticle.material.dispose();
+            //     }
+            // });
 
-            function animate() {
-                requestAnimationFrame(animate);
+            // function animate() {
+            //     requestAnimationFrame(animate);
 
-                // Smoothly interpolate mouse position
-                mouse.x += (targetMouse.x - mouse.x) * 0.1;
-                mouse.y += (targetMouse.y - mouse.y) * 0.1;
+            //     // Smoothly interpolate mouse position
+            //     mouse.x += (targetMouse.x - mouse.x) * 0.1;
+            //     mouse.y += (targetMouse.y - mouse.y) * 0.1;
 
-                // Update particles
-                for (let i = particles.length - 1; i >= 0; i--) {
-                    const particle = particles[i];
+            //     // Update particles
+            //     for (let i = particles.length - 1; i >= 0; i--) {
+            //         const particle = particles[i];
 
-                    // Move particle slightly
-                    particle.position.add(particle.userData.velocity);
+            //         // Move particle slightly
+            //         particle.position.add(particle.userData.velocity);
 
-                    // Decrease lifetime
-                    particle.userData.lifetime--;
+            //         // Decrease lifetime
+            //         particle.userData.lifetime--;
 
-                    // Fade and shrink particle
-                    const ratio = particle.userData.lifetime / particleLifetime;
-                    // Ensure opacity is still visible even when fading
-                    particle.material.opacity = Math.max(0.2, ratio * 1.0);
-                    particle.scale.setScalar(particle.userData.initialScale * ratio);
+            //         // Fade and shrink particle
+            //         const ratio = particle.userData.lifetime / particleLifetime;
+            //         // Ensure opacity is still visible even when fading
+            //         particle.material.opacity = Math.max(0.2, ratio * 1.0);
+            //         particle.scale.setScalar(particle.userData.initialScale * ratio);
 
-                    // Remove particle if lifetime is over
-                    if (particle.userData.lifetime <= 0) {
-                        particles.splice(i, 1);
-                        scene.remove(particle);
-                        particle.geometry.dispose();
-                        particle.material.dispose();
-                    }
-                }
+            //         // Remove particle if lifetime is over
+            //         if (particle.userData.lifetime <= 0) {
+            //             particles.splice(i, 1);
+            //             scene.remove(particle);
+            //             particle.geometry.dispose();
+            //             particle.material.dispose();
+            //         }
+            //     }
 
-                renderer.render(scene, camera);
-            }
+            //     renderer.render(scene, camera);
+            // }
 
-            animate(); // Start the animation loop
+            // animate(); // Start the animation loop
 
             // Handle window resizing
             window.addEventListener('resize', () => {
@@ -578,7 +660,7 @@
 
             // Dynamic Typing Effect Script
             const dynamicRoleElement = document.getElementById('dynamic-role');
-            const roles = ["GenAI Expert","Designer", "Developer", "Innovator", "Problem Solver", "Machine Learning", "Open Source"];
+            const roles = ["GenAI Expert", "Designer", "Developer", "Innovator", "Problem Solver", "Machine Learning", "Open Source"];
             let roleIndex = 0;
             let charIndex = 0;
             let isDeleting = false;
@@ -611,7 +693,248 @@
             }
 
             typeWriter(); // Start the dynamic typing effect
+
+
+            function oneko() {
+                const isReducedMotion =
+                    window.matchMedia(`(prefers-reduced-motion: reduce)`) === true ||
+                    window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
+
+                if (isReducedMotion) return;
+
+                const nekoEl = document.createElement("div");
+
+                let nekoPosX = 32;
+                let nekoPosY = 32;
+
+                let mousePosX = 0;
+                let mousePosY = 0;
+
+                let frameCount = 0;
+                let idleTime = 0;
+                let idleAnimation = null;
+                let idleAnimationFrame = 0;
+
+                const nekoSpeed = 10;
+                const spriteSets = {
+                    idle: [[-3, -3]],
+                    alert: [[-7, -3]],
+                    scratchSelf: [
+                        [-5, 0],
+                        [-6, 0],
+                        [-7, 0],
+                    ],
+                    scratchWallN: [
+                        [0, 0],
+                        [0, -1],
+                    ],
+                    scratchWallS: [
+                        [-7, -1],
+                        [-6, -2],
+                    ],
+                    scratchWallE: [
+                        [-2, -2],
+                        [-2, -3],
+                    ],
+                    scratchWallW: [
+                        [-4, 0],
+                        [-4, -1],
+                    ],
+                    tired: [[-3, -2]],
+                    sleeping: [
+                        [-2, 0],
+                        [-2, -1],
+                    ],
+                    N: [
+                        [-1, -2],
+                        [-1, -3],
+                    ],
+                    NE: [
+                        [0, -2],
+                        [0, -3],
+                    ],
+                    E: [
+                        [-3, 0],
+                        [-3, -1],
+                    ],
+                    SE: [
+                        [-5, -1],
+                        [-5, -2],
+                    ],
+                    S: [
+                        [-6, -3],
+                        [-7, -2],
+                    ],
+                    SW: [
+                        [-5, -3],
+                        [-6, -1],
+                    ],
+                    W: [
+                        [-4, -2],
+                        [-4, -3],
+                    ],
+                    NW: [
+                        [-1, 0],
+                        [-1, -1],
+                    ],
+                };
+
+                function init() {
+                    nekoEl.id = "oneko";
+                    nekoEl.ariaHidden = true;
+                    nekoEl.style.width = "32px";
+                    nekoEl.style.height = "32px";
+                    nekoEl.style.position = "fixed";
+                    nekoEl.style.pointerEvents = "none";
+                    nekoEl.style.imageRendering = "pixelated";
+                    nekoEl.style.left = `${nekoPosX - 16}px`;
+                    nekoEl.style.top = `${nekoPosY - 16}px`;
+                    nekoEl.style.zIndex = 2147483647;
+
+                    let nekoFile = "images/oneko.gif"
+                    const curScript = document.currentScript
+                    if (curScript && curScript.dataset.cat) {
+                        nekoFile = curScript.dataset.cat
+                    }
+                    nekoEl.style.backgroundImage = `url(${nekoFile})`;
+
+                    document.body.appendChild(nekoEl);
+
+                    document.addEventListener("mousemove", function (event) {
+                        mousePosX = event.clientX;
+                        mousePosY = event.clientY;
+                    });
+
+                    window.requestAnimationFrame(onAnimationFrame);
+                }
+
+                let lastFrameTimestamp;
+
+                function onAnimationFrame(timestamp) {
+                    // Stops execution if the neko element is removed from DOM
+                    if (!nekoEl.isConnected) {
+                        return;
+                    }
+                    if (!lastFrameTimestamp) {
+                        lastFrameTimestamp = timestamp;
+                    }
+                    if (timestamp - lastFrameTimestamp > 100) {
+                        lastFrameTimestamp = timestamp
+                        frame()
+                    }
+                    window.requestAnimationFrame(onAnimationFrame);
+                }
+
+                function setSprite(name, frame) {
+                    const sprite = spriteSets[name][frame % spriteSets[name].length];
+                    nekoEl.style.backgroundPosition = `${sprite[0] * 32}px ${sprite[1] * 32}px`;
+                }
+
+                function resetIdleAnimation() {
+                    idleAnimation = null;
+                    idleAnimationFrame = 0;
+                }
+
+                function idle() {
+                    idleTime += 1;
+
+                    // every ~ 20 seconds
+                    if (
+                        idleTime > 10 &&
+                        Math.floor(Math.random() * 200) == 0 &&
+                        idleAnimation == null
+                    ) {
+                        let avalibleIdleAnimations = ["sleeping", "scratchSelf"];
+                        if (nekoPosX < 32) {
+                            avalibleIdleAnimations.push("scratchWallW");
+                        }
+                        if (nekoPosY < 32) {
+                            avalibleIdleAnimations.push("scratchWallN");
+                        }
+                        if (nekoPosX > window.innerWidth - 32) {
+                            avalibleIdleAnimations.push("scratchWallE");
+                        }
+                        if (nekoPosY > window.innerHeight - 32) {
+                            avalibleIdleAnimations.push("scratchWallS");
+                        }
+                        idleAnimation =
+                            avalibleIdleAnimations[
+                            Math.floor(Math.random() * avalibleIdleAnimations.length)
+                            ];
+                    }
+
+                    switch (idleAnimation) {
+                        case "sleeping":
+                            if (idleAnimationFrame < 8) {
+                                setSprite("tired", 0);
+                                break;
+                            }
+                            setSprite("sleeping", Math.floor(idleAnimationFrame / 4));
+                            if (idleAnimationFrame > 192) {
+                                resetIdleAnimation();
+                            }
+                            break;
+                        case "scratchWallN":
+                        case "scratchWallS":
+                        case "scratchWallE":
+                        case "scratchWallW":
+                        case "scratchSelf":
+                            setSprite(idleAnimation, idleAnimationFrame);
+                            if (idleAnimationFrame > 9) {
+                                resetIdleAnimation();
+                            }
+                            break;
+                        default:
+                            setSprite("idle", 0);
+                            return;
+                    }
+                    idleAnimationFrame += 1;
+                }
+
+                function frame() {
+                    frameCount += 1;
+                    const diffX = nekoPosX - mousePosX;
+                    const diffY = nekoPosY - mousePosY;
+                    const distance = Math.sqrt(diffX ** 2 + diffY ** 2);
+
+                    if (distance < nekoSpeed || distance < 48) {
+                        idle();
+                        return;
+                    }
+
+                    idleAnimation = null;
+                    idleAnimationFrame = 0;
+
+                    if (idleTime > 1) {
+                        setSprite("alert", 0);
+                        // count down after being alerted before moving
+                        idleTime = Math.min(idleTime, 7);
+                        idleTime -= 1;
+                        return;
+                    }
+
+                    let direction;
+                    direction = diffY / distance > 0.5 ? "N" : "";
+                    direction += diffY / distance < -0.5 ? "S" : "";
+                    direction += diffX / distance > 0.5 ? "W" : "";
+                    direction += diffX / distance < -0.5 ? "E" : "";
+                    setSprite(direction, frameCount);
+
+                    nekoPosX -= (diffX / distance) * nekoSpeed;
+                    nekoPosY -= (diffY / distance) * nekoSpeed;
+
+                    nekoPosX = Math.min(Math.max(16, nekoPosX), window.innerWidth - 16);
+                    nekoPosY = Math.min(Math.max(16, nekoPosY), window.innerHeight - 16);
+
+                    nekoEl.style.left = `${nekoPosX - 16}px`;
+                    nekoEl.style.top = `${nekoPosY - 16}px`;
+                }
+
+                init();
+            }
+            oneko();
         };
     </script>
 </body>
+
 </html>
