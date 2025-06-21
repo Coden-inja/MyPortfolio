@@ -14,8 +14,8 @@
         /* Custom styles to override or enhance Tailwind */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
-            /* White theme background */
+            background: linear-gradient(135deg, #181e2a 0%, #232b3a 100%);
+            /* Dark gradient background */
             overflow-x: hidden;
             /* Prevent horizontal scroll */
             cursor: none;
@@ -30,7 +30,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 9999;
+            z-index: 12000;
             /* Ensure it's on top */
             pointer-events: none;
             /* Allow clicks to pass through to elements below */
@@ -47,17 +47,17 @@
         }
 
         body::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #232b3a;
         }
 
         body::-webkit-scrollbar-thumb {
-            background: #a8dadc;
+            background: #38bdf8;
             /* Light blue */
             border-radius: 4px;
         }
 
         body::-webkit-scrollbar-thumb:hover {
-            background: #457b9d;
+            background: #06b6d4;
             /* Slightly darker blue */
         }
 
@@ -75,7 +75,7 @@
         /* Hover effect for project cards */
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 15px rgba(45, 212, 191, 0.13);
         }
 
         /* Neon border effect for the hero image */
@@ -86,36 +86,183 @@
             border-radius: 50%;
             /* Make it round */
             box-shadow:
-                0 0 5px #a8dadc,
+                0 0 5px #38bdf8,
                 /* Light blue */
-                0 0 10px #457b9d,
+                0 0 10px #06b6d4,
                 /* Medium blue */
-                0 0 15px #1d3557,
+                0 0 15px #0ea5e9,
                 /* Dark blue */
-                0 0 20px #2a9d8f,
+                0 0 20px #0ea5e9,
                 /* Teal */
-                0 0 25px #264653;
+                0 0 25px #38bdf8;
             /* Darker Teal */
             animation: neonGlow 2s ease-in-out infinite alternate;
+        }
+
+        /* --- Chatbot styles --- */
+        #chatbot-toggle-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 11000;
+            background: linear-gradient(135deg, #06b6d4, #38bdf8);
+            color: #fff;
+            border-radius: 9999px;
+            padding: 0.75rem 1.25rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border: none;
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.13);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #chatbot-toggle-btn:hover {
+            background: linear-gradient(135deg, #38bdf8, #06b6d4);
+        }
+
+        #chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 350px;
+            max-width: 95vw;
+            height: 480px;
+            max-height: 85vh;
+            z-index: 11000;
+            display: none;
+            flex-direction: column;
+            background: rgba(24, 30, 42, 0.98);
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px rgba(44, 62, 80, 0.22);
+            overflow: hidden;
+        }
+
+        #chatbot-header {
+            background: linear-gradient(90deg, #06b6d4, #38bdf8);
+            color: #181e2a;
+            padding: 1rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        #chatbot-close-btn {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            background: none;
+            border: none;
+            color: #181e2a;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        #chatbot-messages {
+            flex: 1 1 0%;
+            padding: 1rem 1rem 0.3rem 1rem;
+            overflow-y: auto;
+            background: transparent;
+            font-size: 0.98rem;
+        }
+
+        .chatbot-msg {
+            margin-bottom: 0.85rem;
+            display: flex;
+        }
+
+        .chatbot-msg.user {
+            justify-content: flex-end;
+        }
+
+        .chatbot-msg.bot {
+            justify-content: flex-start;
+        }
+
+        .chatbot-bubble {
+            padding: 0.7rem 1.1rem 0.5rem 1.1rem;
+            border-radius: 1.5rem;
+            max-width: 80%;
+            line-height: 1.45;
+            word-break: break-word;
+            margin-bottom: 0.5rem;
+        }
+
+        .chatbot-msg.user .chatbot-bubble {
+            background: linear-gradient(90deg, #38bdf8, #06b6d4);
+            color: #181e2a;
+            border-bottom-right-radius: 0.3rem;
+        }
+
+        .chatbot-msg.bot .chatbot-bubble {
+            background: rgba(24, 30, 42, 0.94);
+            color: #fff;
+            border-bottom-left-radius: 0.3rem;
+            border: 1px solid #38bdf8;
+        }
+
+       
+        #chatbot-input-area {
+            display: flex;
+            padding: 0.8rem;
+            border-top: 1px solid #38bdf8;
+            background: rgba(24, 30, 42, 1);
+        }
+
+        #chatbot-input {
+            flex: 1 1 0%;
+            border: 1px solid #38bdf8;
+            border-radius: 1.5rem;
+            background: #181e2a;
+            color: #fff;
+            padding: 0.6rem 1.1rem;
+            margin-right: 0.6rem;
+            outline: none;
+        }
+
+        #chatbot-send-btn {
+            background: linear-gradient(135deg, #06b6d4, #38bdf8);
+            color: #181e2a;
+            border: none;
+            border-radius: 1.5rem;
+            padding: 0.6rem 0.9rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        #chatbot-send-btn:hover {
+            background: linear-gradient(135deg, #38bdf8, #06b6d4);
+        }
+
+        #chatbot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #chatbot-messages::-webkit-scrollbar-thumb {
+            background: #38bdf8;
+            border-radius: 4px;
         }
 
         @keyframes neonGlow {
             from {
                 box-shadow:
-                    0 0 5px #a8dadc,
-                    0 0 10px #457b9d,
-                    0 0 15px #1d3557,
-                    0 0 20px #2a9d8f,
-                    0 0 25px #264653;
+                    0 0 5px #38bdf8,
+                    0 0 10px #06b6d4,
+                    0 0 15px #0ea5e9,
+                    0 0 20px #0ea5e9,
+                    0 0 25px #38bdf8;
             }
 
             to {
                 box-shadow:
-                    0 0 10px #a8dadc,
-                    0 0 20px #457b9d,
-                    0 0 30px #1d3557,
-                    0 0 40px #2a9d8f,
-                    0 0 50px #264653;
+                    0 0 10px #38bdf8,
+                    0 0 20px #06b6d4,
+                    0 0 30px #0ea5e9,
+                    0 0 40px #0ea5e9,
+                    0 0 50px #38bdf8;
             }
         }
 
@@ -128,7 +275,7 @@
             /* Hide overflowing text during typing */
             white-space: nowrap;
             /* Keep text on one line */
-            border-right: 0.15em solid;
+            border-right: 0.15em solid #06b6d4;
             /* Blinking cursor effect */
             animation: typing-cursor 0.75s step-end infinite;
         }
@@ -141,29 +288,29 @@
             }
 
             50% {
-                border-color: #2a9d8f;
+                border-color: #06b6d4;
             }
 
-            /* Teal cursor */
+            /* Neon blue cursor */
         }
     </style>
 </head>
 
-<body class="text-gray-800">
+<body class="text-gray-100">
     <!-- Mouse Trail Canvas -->
     <canvas id="mouse-trail-canvas"></canvas>
 
     <!-- Header Section -->
-    <header class="bg-white shadow-sm py-4 fixed w-full z-10 top-0">
+    <header class="bg-gradient-to-b from-[#232b3a] to-[#181e2a] shadow-sm py-4 fixed w-full z-10 top-0">
         <div class="container mx-auto px-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gray-800">Yogesh Kumar</a>
+            <a href="#" class="text-2xl font-bold text-cyan-300">Yogesh Kumar</a>
             <nav>
                 <ul class="flex space-x-6">
                     <li><a href="#projects"
-                            class="text-gray-600 hover:text-teal-500 transition duration-300">Projects</a></li>
-                    <li><a href="#about" class="text-gray-600 hover:text-teal-500 transition duration-300">About</a>
+                            class="text-gray-200 hover:text-cyan-400 transition duration-300">Projects</a></li>
+                    <li><a href="#about" class="text-gray-200 hover:text-cyan-400 transition duration-300">About</a>
                     </li>
-                    <li><a href="#contact" class="text-gray-600 hover:text-teal-500 transition duration-300">Contact</a>
+                    <li><a href="#contact" class="text-gray-200 hover:text-cyan-400 transition duration-300">Contact</a>
                     </li>
                 </ul>
             </nav>
@@ -172,7 +319,8 @@
 
     <main class="mt-20">
         <!-- Hero Section -->
-        <section id="hero" class="bg-white min-h-screen flex flex-col items-center justify-center py-16">
+        <section id="hero"
+            class="bg-gradient-to-br from-[#232b3a] via-[#233a4d] to-[#181e2a] min-h-screen flex flex-col items-center justify-center py-16">
             <div class="container mx-auto px-4 text-center">
                 <!-- Photo with Neon Border -->
                 <div class="mb-8 mt-12 md:mt-0 flex justify-center">
@@ -181,24 +329,23 @@
                             class="rounded-full w-44 h-44 object-cover shadow-lg">
                     </div>
                 </div>
-
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4">
-                    Hello, I'm <span class="text-teal-500">Yogesh</span> &mdash;
+                    Hello, I'm <span class="text-cyan-400">Yogesh</span> &mdash;
                 </h1>
-                <p class="text-3xl md:text-5xl font-semibold text-gray-600 mb-4">
-                    <span id="dynamic-role" class="dynamic-text text-gray-600"></span>
+                <p class="text-3xl md:text-5xl font-semibold text-cyan-200 mb-4">
+                    <span id="dynamic-role" class="dynamic-text text-cyan-200"></span>
                 </p>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-gray-700">
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-gray-200">
                     I create engaging digital experiences with clean design and efficient code.
                     Browse my projects below to see my work.
                 </p>
                 <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
                     <a href="#projects"
-                        class="bg-gray-800 text-white px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-700 transition duration-300 shadow-lg">
+                        class="bg-gradient-to-r from-cyan-500 to-teal-400 text-white px-8 py-3 rounded-full text-lg font-medium hover:from-teal-400 hover:to-cyan-500 transition duration-300 shadow-lg">
                         View Projects
                     </a>
                     <a href="#contact"
-                        class="border border-gray-800 text-gray-800 px-8 py-3 rounded-full text-lg font-medium hover:bg-gray-100 transition duration-300 shadow-lg">
+                        class="border border-cyan-400 text-cyan-200 px-8 py-3 rounded-full text-lg font-medium hover:bg-cyan-900 hover:text-white transition duration-300 shadow-lg">
                         Contact Me
                     </a>
                 </div>
@@ -206,167 +353,177 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="bg-blue-50 py-16 md:py-24">
+        <section id="projects" class="bg-gradient-to-br from-[#1e293b] via-[#232b3a] to-[#181e2a] py-16 md:py-24">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800">My Projects</h2>
-                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-gray-700">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-cyan-300">My Projects</h2>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-gray-200">
                     Explore a selection of my recent work. Each project showcases different skills and technologies.
                 </p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Project Card 1 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                    <div
+                        class="bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/agrodx.png" alt="Agro-Dx" class="project-image mb-4">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Agro-Dx</h3>
-                        <p class="text-gray-600 mb-4">A GenAI powered plant disease detection system with custom build
+                        <h3 class="text-2xl font-semibold mb-2 text-cyan-100">Agro-Dx</h3>
+                        <p class="text-gray-200 mb-4">A GenAI powered plant disease detection system with custom build
                             CNN model, weather, maps APIs, deployed on render.</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">CNN</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Firebase</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Gemini</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Map API</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">CNN</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Firebase</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Gemini</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Map API</span>
                         </div>
                         <a href="https://agro-dx.onrender.com/" target="_blank" rel="noopener noreferrer"
-                            class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                            class="text-cyan-400 hover:underline text-sm font-medium">View Live &rarr;</a>
                     </div>
 
                     <!-- Project Card 2 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                    <div
+                        class="bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/khanasathi.png" alt="Khanasathi" class="project-image mb-4">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Khanasathi</h3>
-                        <p class="text-gray-600 mb-4">A food-waste reduction portal for Restraunts and NGO. Xgboost
+                        <h3 class="text-2xl font-semibold mb-2 text-cyan-100">Khanasathi</h3>
+                        <p class="text-gray-200 mb-4">A food-waste reduction portal for Restraunts and NGO. Xgboost
                             model for prediction and insights for Order Optimization</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML| CSS| JS</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">PostgreSQl |
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">HTML| CSS| JS</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">PostgreSQl |
                                 FLask</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">ML</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">ML</span>
                         </div>
                         <a href="https://github.com/Coden-inja/KhanaSathi" target="_blank" rel="noopener noreferrer"
-                            class="text-blue-600 hover:underline text-sm font-medium">View Source &rarr;</a>
+                            class="text-cyan-400 hover:underline text-sm font-medium">View Source &rarr;</a>
                     </div>
 
                     <!-- Project Card 3 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                    <div
+                        class="bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/climavisor.png" alt="ClimaVisor" class="project-image mb-4">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">ClimaVisor</h3>
-                        <p class="text-gray-600 mb-4">Climate predictions in 3D globe environment. Separate dashboards
+                        <h3 class="text-2xl font-semibold mb-2 text-cyan-100">ClimaVisor</h3>
+                        <p class="text-gray-200 mb-4">Climate predictions in 3D globe environment. Separate dashboards
                             for weather predictions and visualization of historical data</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">WebGL</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Weather API</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Three.js</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">WebGL</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Weather API</span>
                         </div>
                         <a href="https://clima-visor.vercel.app/" target="_blank" rel="noopener noreferrer"
-                            class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                            class="text-cyan-400 hover:underline text-sm font-medium">View Live &rarr;</a>
                     </div>
 
                     <!-- Add more project cards as needed -->
                     <!-- Project Card 4 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                    <div
+                        class="bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/genquest.png" alt="GenQuest" class="project-image mb-4">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">GenQuest</h3>
-                        <p class="text-gray-600 mb-4">An Exam-prep helper for generating questions from uploaded pdf/
+                        <h3 class="text-2xl font-semibold mb-2 text-cyan-100">GenQuest</h3>
+                        <p class="text-gray-200 mb-4">An Exam-prep helper for generating questions from uploaded pdf/
                             text query. With dark and light mode, no PDF limit.</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Flask</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Gemini</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Multimodal
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Flask</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Gemini</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Multimodal
                                 Chatbot</span>
                         </div>
                         <a href="https://github.com/Coden-inja/GenQuest" target="_blank" rel="noopener noreferrer"
-                            class="text-blue-600 hover:underline text-sm font-medium">View Source &rarr;</a>
+                            class="text-cyan-400 hover:underline text-sm font-medium">View Source &rarr;</a>
                     </div>
 
                     <!-- Project Card 5 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                    <div
+                        class="bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/artovalley.png" alt="Arto-Valley" class="project-image mb-4">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Arto-Valley</h3>
-                        <p class="text-gray-600 mb-4">A fully 3D first person game to navigate in a futuristic valley of
+                        <h3 class="text-2xl font-semibold mb-2 text-cyan-100">Arto-Valley</h3>
+                        <p class="text-gray-200 mb-4">A fully 3D first person game to navigate in a futuristic valley of
                             3D art pieces. No GPU required for rendering</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">WebGL</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Go lang</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Three.js</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">WebGL</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Go lang</span>
                         </div>
                         <a href="https://github.com/Coden-inja/ArtoValley" target="_blank" rel="noopener noreferrer"
-                            class="text-blue-600 hover:underline text-sm font-medium">View Source &rarr;</a>
+                            class="text-cyan-400 hover:underline text-sm font-medium">View Source &rarr;</a>
                     </div>
 
                     <!-- Project Card 6 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                    <div
+                        class="bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/bolthack.png" alt="BoltHack" class="project-image mb-4">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">BoltHack</h3>
-                        <p class="text-gray-600 mb-4">A custom website for World's biggest hackathon from Bolt using its
+                        <h3 class="text-2xl font-semibold mb-2 text-cyan-100">BoltHack</h3>
+                        <p class="text-gray-200 mb-4">A custom website for World's biggest hackathon from Bolt using its
                             own platform. With cyberpunk theme and 3D models</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS |
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">HTML | CSS |
                                 JS</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Three.js</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">UI</span>
                         </div>
                         <a href="https://zippy-zabaione-988440.netlify.app/" target="_blank" rel="noopener noreferrer"
-                            class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                            class="text-cyan-400 hover:underline text-sm font-medium">View Live &rarr;</a>
                     </div>
                     <!-- Project Card 7 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                    <div
+                        class="bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/whizchat.png" alt="Whizchat" class="project-image mb-4">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Whizchat</h3>
-                        <p class="text-gray-600 mb-4">A Whatsapp clone with Chatbots having pre-defined replies for real
+                        <h3 class="text-2xl font-semibold mb-2 text-cyan-100">Whizchat</h3>
+                        <p class="text-gray-200 mb-4">A Whatsapp clone with Chatbots having pre-defined replies for real
                             feel. Made for lovable UI hackathon using its own platform </p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS |
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">HTML | CSS |
                                 JS</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Whatsapp</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Whatsapp</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">UI</span>
                         </div>
                         <a href="https://whizchat-2-0.lovable.app" target="_blank" rel="noopener noreferrer"
-                            class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                            class="text-cyan-400 hover:underline text-sm font-medium">View Live &rarr;</a>
                     </div>
                     <!-- Project Card 8 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                    <div
+                        class="bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/VoiceSphere.png" alt="VoiceSphere" class="project-image mb-4">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">VoiceSphere</h3>
-                        <p class="text-gray-600 mb-4">A Chatroom for music enthusiasts. Voicechats, messages with
+                        <h3 class="text-2xl font-semibold mb-2 text-cyan-100">VoiceSphere</h3>
+                        <p class="text-gray-200 mb-4">A Chatroom for music enthusiasts. Voicechats, messages with
                             premium and free group. Available in Light and Dark mode </p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS |
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">HTML | CSS |
                                 Js</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Music</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Music</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">UI</span>
                         </div>
                         <a href="https://fantastic-wisp-db2b58.netlify.app" target="_blank" rel="noopener noreferrer"
-                            class="text-blue-600 hover:underline text-sm font-medium">View Live &rarr;</a>
+                            class="text-cyan-400 hover:underline text-sm font-medium">View Live &rarr;</a>
                     </div>
                     <!-- Project Card 9 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                    <div
+                        class="bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/amusify.png" alt="Mideo" class="project-image mb-4">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Amusify</h3>
-                        <p class="text-gray-600 mb-4">A next gen Spotify clone for listening to AI generated music.
+                        <h3 class="text-2xl font-semibold mb-2 text-cyan-100">Amusify</h3>
+                        <p class="text-gray-200 mb-4">A next gen Spotify clone for listening to AI generated music.
                             Graphic mousetrail for improving user experience</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS |
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">HTML | CSS |
                                 JS</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Tiktok</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Three.js</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Tiktok</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Three.js</span>
                         </div>
                         <a href="https://resilient-starburst-3e8add.netlify.app/" target="_blank"
-                            rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View
+                            rel="noopener noreferrer" class="text-cyan-400 hover:underline text-sm font-medium">View
                             Live &rarr;</a>
                     </div>
                     <!-- Project Card 10 -->
-                    <div class="bg-white rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                    <div
+                        class="bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-6 transform transition duration-300 project-card">
                         <img src="/images/netflix.png" alt="Netflix-Clone" class="project-image mb-4">
-                        <h3 class="text-2xl font-semibold mb-2 text-gray-800">Netflix-Clone</h3>
-                        <p class="text-gray-600 mb-4">My first ever project on Web-dev. A Netflix clone website of the
+                        <h3 class="text-2xl font-semibold mb-2 text-cyan-100">Netflix-Clone</h3>
+                        <p class="text-gray-200 mb-4">My first ever project on Web-dev. A Netflix clone website of the
                             older version. Has images, videos, even Fonts just like Netflix</p>
                         <div class="flex flex-wrap justify-center gap-2 mb-4">
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">HTML | CSS</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">Netflix</span>
-                            <span class="bg-teal-100 text-teal-700 text-sm px-3 py-1 rounded-full">UI</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">HTML | CSS</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Netflix</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">UI</span>
                         </div>
                         <a href="https://extraordinary-gumdrop-0ecc79.netlify.app/" target="_blank"
-                            rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm font-medium">View
+                            rel="noopener noreferrer" class="text-cyan-400 hover:underline text-sm font-medium">View
                             Live &rarr;</a>
                     </div>
                 </div>
@@ -374,23 +531,23 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="bg-white py-16 md:py-24">
+        <section id="about" class="bg-gradient-to-br from-[#232b3a] via-[#1e293b] to-[#181e2a] py-16 md:py-24">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800">About Me</h2>
-                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-gray-700">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-cyan-200">About Me</h2>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-gray-200">
                     Get to know more about my background, skills, and what drives me as a developer.
                 </p>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 text-left">
                     <div>
-                        <h3 class="text-3xl font-semibold mb-6 text-gray-800">My Journey</h3>
-                        <p class="mb-4 text-gray-700 leading-relaxed">
+                        <h3 class="text-3xl font-semibold mb-6 text-cyan-100">My Journey</h3>
+                        <p class="mb-4 text-gray-200 leading-relaxed">
                             I am a passionate developer with a focus on creating clean, elegant and functional web
                             applications.
                             With a strong foundation in both design and development, I bring a unique perspective to
                             every project.
                         </p>
-                        <p class="mb-4 text-gray-700 leading-relaxed">
+                        <p class="mb-4 text-gray-200 leading-relaxed">
                             My journey in technology began with curiosity about how things work, which led me to pursue
                             formal
                             education in computer science. Since then, I've been constantly learning and adapting to the
@@ -398,85 +555,85 @@
                             technologies, exploring how they can revolutionize the way we interact with the digital
                             world.
                         </p>
-                        <p class="text-gray-700 leading-relaxed">
+                        <p class="text-gray-200 leading-relaxed">
                             When I'm not coding, you can find me exploring new technologies, contributing to open-source
                             projects,
                             or sharing my knowledge with the community through my blog and social media.
                         </p>
                     </div>
                     <div>
-                        <h3 class="text-3xl font-semibold mb-6 text-gray-800">My Skills</h3>
+                        <h3 class="text-3xl font-semibold mb-6 text-cyan-100">My Skills</h3>
                         <div class="space-y-6">
                             <div>
                                 <div class="flex justify-between items-center mb-1">
-                                    <span class="text-lg font-medium text-gray-700">JavaScript</span>
-                                    <span class="text-lg font-medium text-gray-700">90%</span>
+                                    <span class="text-lg font-medium text-gray-200">JavaScript</span>
+                                    <span class="text-lg font-medium text-gray-200">90%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 90%;"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="text-lg font-medium text-gray-700">HTML</span>
-                                    <span class="text-lg font-medium text-gray-700">90%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 95%;"></div>
+                                <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-cyan-500 h-2.5 rounded-full" style="width: 90%;"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex justify-between items-center mb-1">
-                                    <span class="text-lg font-medium text-gray-700">CSS</span>
-                                    <span class="text-lg font-medium text-gray-700">80%</span>
+                                    <span class="text-lg font-medium text-gray-200">HTML</span>
+                                    <span class="text-lg font-medium text-gray-200">90%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 80%;"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="text-lg font-medium text-gray-700">JavaScript</span>
-                                    <span class="text-lg font-medium text-gray-700">70%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 70%;"></div>
+                                <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-cyan-500 h-2.5 rounded-full" style="width: 95%;"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex justify-between items-center mb-1">
-                                    <span class="text-lg font-medium text-gray-700">FLASK</span>
-                                    <span class="text-lg font-medium text-gray-700">65%</span>
+                                    <span class="text-lg font-medium text-gray-200">CSS</span>
+                                    <span class="text-lg font-medium text-gray-200">80%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 65%;"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-1">
-                                    <span class="text-lg font-medium text-gray-700">API</span>
-                                    <span class="text-lg font-medium text-gray-700">60%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 60%;"></div>
+                                <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-cyan-500 h-2.5 rounded-full" style="width: 80%;"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex justify-between items-center mb-1">
-                                    <span class="text-lg font-medium text-gray-700">Three.js</span>
-                                    <span class="text-lg font-medium text-gray-700">30%</span>
+                                    <span class="text-lg font-medium text-gray-200">JavaScript</span>
+                                    <span class="text-lg font-medium text-gray-200">70%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 30%;"></div>
+                                <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-cyan-500 h-2.5 rounded-full" style="width: 70%;"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex justify-between items-center mb-1">
-                                    <span class="text-lg font-medium text-gray-700">Git & GitHub</span>
-                                    <span class="text-lg font-medium text-gray-700">60%</span>
+                                    <span class="text-lg font-medium text-gray-200">FLASK</span>
+                                    <span class="text-lg font-medium text-gray-200">65%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-teal-500 h-2.5 rounded-full" style="width: 60%;"></div>
+                                <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-cyan-500 h-2.5 rounded-full" style="width: 65%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-medium text-gray-200">API</span>
+                                    <span class="text-lg font-medium text-gray-200">60%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-cyan-500 h-2.5 rounded-full" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-medium text-gray-200">Three.js</span>
+                                    <span class="text-lg font-medium text-gray-200">30%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-cyan-500 h-2.5 rounded-full" style="width: 30%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-lg font-medium text-gray-200">Git & GitHub</span>
+                                    <span class="text-lg font-medium text-gray-200">60%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                    <div class="bg-cyan-500 h-2.5 rounded-full" style="width: 60%;"></div>
                                 </div>
                             </div>
                         </div>
@@ -487,28 +644,29 @@
 
 
         <!-- Contact Me Section -->
-        <section id="contact" class="bg-blue-50 py-16 md:py-24">
+        <section id="contact" class="bg-gradient-to-br from-[#181e2a] via-[#233a4d] to-[#1e293b] py-16 md:py-24">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-gray-800">Get In Touch</h2>
-                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-gray-700">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-cyan-200">Get In Touch</h2>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-gray-200">
                     Feel free to reach out for collaborations, opportunities, or just to say hello.
                 </p>
 
-                <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
+                <div
+                    class="max-w-md mx-auto bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-8">
                     <div class="flex flex-wrap justify-center gap-4 mb-6">
                         <a href="https://github.com/Coden-inja" target="_blank" rel="noopener noreferrer"
-                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">GitHub</a>
+                            class="bg-gradient-to-r from-cyan-700 to-teal-600 text-white px-5 py-2 rounded-full hover:from-teal-600 hover:to-cyan-700 transition duration-300">GitHub</a>
                         <a href="https://www.linkedin.com/in/yogesh-kumar-299298260/" target="_blank"
                             rel="noopener noreferrer"
-                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">LinkedIn</a>
+                            class="bg-gradient-to-r from-cyan-700 to-teal-600 text-white px-5 py-2 rounded-full hover:from-teal-600 hover:to-cyan-700 transition duration-300">LinkedIn</a>
                         <a href="https://x.com/Yoges_ai" target="_blank" rel="noopener noreferrer"
-                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Twitter</a>
+                            class="bg-gradient-to-r from-cyan-700 to-teal-600 text-white px-5 py-2 rounded-full hover:from-teal-600 hover:to-cyan-700 transition duration-300">Twitter</a>
                         <a href="fbyogesh111@gmail.com" target="_blank" rel="noopener noreferrer"
-                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Email</a>
+                            class="bg-gradient-to-r from-cyan-700 to-teal-600 text-white px-5 py-2 rounded-full hover:from-teal-600 hover:to-cyan-700 transition duration-300">Email</a>
                         <a href="https://peerlist.io/yoges" target="_blank" rel="noopener noreferrer"
-                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Peerlist</a>
+                            class="bg-gradient-to-r from-cyan-700 to-teal-600 text-white px-5 py-2 rounded-full hover:from-teal-600 hover:to-cyan-700 transition duration-300">Peerlist</a>
                         <a href="https://linktr.ee/yogesh.kumar.singh" target="_blank" rel="noopener noreferrer"
-                            class="bg-gray-200 text-gray-800 px-5 py-2 rounded-full hover:bg-teal-500 hover:text-white transition duration-300">Linktree</a>
+                            class="bg-gradient-to-r from-cyan-700 to-teal-600 text-white px-5 py-2 rounded-full hover:from-teal-600 hover:to-cyan-700 transition duration-300">Linktree</a>
                     </div>
                     <!-- You can add a contact form here if needed -->
                     <!--
@@ -522,14 +680,181 @@
                 </div>
             </div>
         </section>
+        <!-- Chatbot Toggle Button -->
+        <button id="chatbot-toggle-btn" aria-label="Toggle Chatbot">
+            💬 Chat
+        </button>
+        <!-- Chatbot Container -->
+        <div id="chatbot-container">
+            <div id="chatbot-header">
+                Yogi Bot
+                <button id="chatbot-close-btn" aria-label="Close Chatbot">&times;</button>
+            </div>
+            <div id="chatbot-messages"></div>
+            <form id="chatbot-input-area" autocomplete="off">
+                <input id="chatbot-input" type="text" placeholder="Ask me anything..." autocomplete="off" />
+                <button id="chatbot-send-btn" type="submit">Send</button>
+            </form>
+        </div>
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-gradient-to-t from-[#181e2a] via-[#232b3a] to-[#232b3a] text-cyan-200 py-8">
         <div class="container mx-auto px-4 text-center">
             <p>&copy; 2025 Yogesh Kumar | All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+
+        // Gemini Chatbot JS
+(function () {
+    // Memory for chat messages (session only)
+    let chatMessages = [];
+
+    const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotInputArea = document.getElementById('chatbot-input-area');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSendBtn = document.getElementById('chatbot-send-btn');
+
+    // Typewriter effect for a bubble, with callback
+    function typeWriterEffect(element, text, speed = 22, onComplete) {
+        element.textContent = '';
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else if (onComplete) {
+                onComplete();
+            }
+        }
+        type();
+    }
+
+    // Restore chat session from memory if exists
+    function renderMessages() {
+        chatbotMessages.innerHTML = '';
+        chatMessages.forEach((msg, idx) => {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'chatbot-msg ' + (msg.role === 'user' ? 'user' : 'bot');
+            const bubble = document.createElement('div');
+            bubble.className = 'chatbot-bubble';
+
+            // Animate only the very last assistant message (typewriter effect)
+            if (
+                msg.role === 'assistant' &&
+                idx === chatMessages.length - 1 &&
+                !msg.animated // prevent re-animation on rerender
+            ) {
+                msg.animated = true; // mark as animated
+                // Scroll after animation completes
+                typeWriterEffect(bubble, msg.content, 22, () => {
+                    msgDiv.scrollIntoView({ behavior: "auto", block: "end" });
+                });
+            } else {
+                bubble.innerText = msg.content;
+            }
+            msgDiv.appendChild(bubble);
+            chatbotMessages.appendChild(msgDiv);
+        });
+        // For non-animated or already animated: scroll now
+        if (
+            !(
+                chatMessages.length &&
+                chatMessages[chatMessages.length - 1].role === 'assistant' &&
+                !chatMessages[chatMessages.length - 1].animated
+            )
+        ) {
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+    }
+
+    function pushMessage(role, content) {
+        chatMessages.push({ role, content });
+        renderMessages();
+    }
+
+    // Toggle chatbot open/close
+    chatbotToggleBtn.addEventListener('click', () => {
+        if (chatbotContainer.style.display === 'flex') {
+            chatbotContainer.style.display = 'none';
+        } else {
+            chatbotContainer.style.display = 'flex';
+            setTimeout(() => chatbotInput.focus(), 200);
+            renderMessages();
+        }
+    });
+    // Close button
+    chatbotCloseBtn.addEventListener('click', () => {
+        chatbotContainer.style.display = 'none';
+    });
+
+    // Send message handler
+    chatbotInputArea.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const msg = chatbotInput.value.trim();
+        if (!msg) return;
+        pushMessage('user', msg);
+        chatbotInput.value = '';
+        chatbotInput.focus();
+
+        // Add loading bubble for bot
+        pushMessage('assistant', '...');
+        renderMessages();
+
+        // Send full chat history (as context), up to the last 10 exchanges to keep prompt concise
+        const contextMessages = chatMessages
+            .filter(m => m.role === 'user' || m.role === 'assistant')
+            .slice(-10)
+            .map(m => ({
+                role: m.role,
+                content: m.content
+            }));
+
+        // Call the backend Gemini API
+        try {
+            const res = await fetch('/api/chatbot', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: msg,
+                    history: contextMessages
+                })
+            });
+            const data = await res.json();
+            // Remove last "..." loading
+            chatMessages.pop();
+            if (data.reply) {
+                pushMessage('assistant', data.reply);
+            } else {
+                pushMessage('assistant', 'Sorry, I did not get a response.');
+            }
+        } catch (err) {
+            chatMessages.pop();
+            pushMessage('assistant', 'Error contacting Gemini API.');
+        }
+    });
+
+    // Enter key submits, Shift+Enter makes newline
+    chatbotInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            chatbotSendBtn.click();
+        }
+    });
+
+    // Autofocus input when opening
+    if (chatbotContainer.style.display === 'flex') {
+        setTimeout(() => chatbotInput.focus(), 200);
+    }
+
+})();
+    </script>
 
     <script>
         // Three.js Mouse Trail Script

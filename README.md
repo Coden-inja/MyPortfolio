@@ -1,4 +1,4 @@
-#Want to make Your Own Portfolio in Seconds ?
+#Want to make Your Own AI Portfolio in Seconds ?
 
 ### Steps to Get Started
 
@@ -6,7 +6,7 @@
 2. Change your name  
 3. Add your photos  
 4. Add your project links  
-5. Add your contact links  
+5. Add your description  
 
 ---
 
