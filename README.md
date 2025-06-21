@@ -1,4 +1,4 @@
-#Want to make Your Own AI Portfolio in Seconds ?
+#Want to make Your Own Roasting AI Portfolio in Seconds ?
 
 ### Steps to Get Started
 
@@ -10,7 +10,13 @@
 
 ---
 
-## 🎉 Congrats! You're Ready to Publish on Netlify
+Run the project locally
+
+1. npm init -y
+2. npm install express node-fetch dotenv
+3. npm server.js
+
+## 🎉 Congrats! You're Ready to Publish on Vercel
 
 ### Run the following commands in your terminal (inside the project directory):
 
