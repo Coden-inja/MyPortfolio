@@ -203,7 +203,7 @@
             border: 1px solid #38bdf8;
         }
 
-       
+
         #chatbot-input-area {
             display: flex;
             padding: 0.8rem;
@@ -376,6 +376,23 @@
                         </div>
                         <a href="https://agro-dx.onrender.com/" target="_blank" rel="noopener noreferrer"
                             class="text-cyan-400 hover:underline text-sm font-medium">View Live &rarr;</a>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-tr from-[#232b3a] via-[#233a4d] to-[#181e2a] rounded-lg shadow-md p-6 transform transition duration-300 project-card">
+                        <img src="/images/alchemailyst.png" alt="AlchEmaiLyst" class="project-image mb-4">
+                        <h3 class="text-2xl font-semibold mb-2 text-cyan-100">AlchEmaiLyst</h3>
+                        <p class="text-gray-200 mb-4">an AI-powered web app for email management (summarization,
+                            replies, spam detection) using LLMs and
+                            proxy.</p>
+                        <div class="flex flex-wrap justify-center gap-2 mb-4">
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">AI Agent</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">Express.js</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">React</span>
+                            <span class="bg-cyan-800 text-cyan-200 text-sm px-3 py-1 rounded-full">OAuth2.0</span>
+                        </div>
+                        <a href="https://github.com/Coden-inja/alchEmaiLyst" target="_blank" rel="noopener noreferrer"
+                            class="text-cyan-400 hover:underline text-sm font-medium">View Source &rarr;</a>
                     </div>
 
                     <!-- Project Card 2 -->
@@ -708,152 +725,152 @@
     <script>
 
         // Gemini Chatbot JS
-(function () {
-    // Memory for chat messages (session only)
-    let chatMessages = [];
+        (function () {
+            // Memory for chat messages (session only)
+            let chatMessages = [];
 
-    const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
-    const chatbotContainer = document.getElementById('chatbot-container');
-    const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
-    const chatbotMessages = document.getElementById('chatbot-messages');
-    const chatbotInputArea = document.getElementById('chatbot-input-area');
-    const chatbotInput = document.getElementById('chatbot-input');
-    const chatbotSendBtn = document.getElementById('chatbot-send-btn');
+            const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
+            const chatbotContainer = document.getElementById('chatbot-container');
+            const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
+            const chatbotMessages = document.getElementById('chatbot-messages');
+            const chatbotInputArea = document.getElementById('chatbot-input-area');
+            const chatbotInput = document.getElementById('chatbot-input');
+            const chatbotSendBtn = document.getElementById('chatbot-send-btn');
 
-    // Typewriter effect for a bubble, with callback
-    function typeWriterEffect(element, text, speed = 22, onComplete) {
-        element.textContent = '';
-        let i = 0;
-        function type() {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            } else if (onComplete) {
-                onComplete();
+            // Typewriter effect for a bubble, with callback
+            function typeWriterEffect(element, text, speed = 22, onComplete) {
+                element.textContent = '';
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else if (onComplete) {
+                        onComplete();
+                    }
+                }
+                type();
             }
-        }
-        type();
-    }
 
-    // Restore chat session from memory if exists
-    function renderMessages() {
-        chatbotMessages.innerHTML = '';
-        chatMessages.forEach((msg, idx) => {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = 'chatbot-msg ' + (msg.role === 'user' ? 'user' : 'bot');
-            const bubble = document.createElement('div');
-            bubble.className = 'chatbot-bubble';
+            // Restore chat session from memory if exists
+            function renderMessages() {
+                chatbotMessages.innerHTML = '';
+                chatMessages.forEach((msg, idx) => {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = 'chatbot-msg ' + (msg.role === 'user' ? 'user' : 'bot');
+                    const bubble = document.createElement('div');
+                    bubble.className = 'chatbot-bubble';
 
-            // Animate only the very last assistant message (typewriter effect)
-            if (
-                msg.role === 'assistant' &&
-                idx === chatMessages.length - 1 &&
-                !msg.animated // prevent re-animation on rerender
-            ) {
-                msg.animated = true; // mark as animated
-                // Scroll after animation completes
-                typeWriterEffect(bubble, msg.content, 22, () => {
-                    msgDiv.scrollIntoView({ behavior: "auto", block: "end" });
+                    // Animate only the very last assistant message (typewriter effect)
+                    if (
+                        msg.role === 'assistant' &&
+                        idx === chatMessages.length - 1 &&
+                        !msg.animated // prevent re-animation on rerender
+                    ) {
+                        msg.animated = true; // mark as animated
+                        // Scroll after animation completes
+                        typeWriterEffect(bubble, msg.content, 22, () => {
+                            msgDiv.scrollIntoView({ behavior: "auto", block: "end" });
+                        });
+                    } else {
+                        bubble.innerText = msg.content;
+                    }
+                    msgDiv.appendChild(bubble);
+                    chatbotMessages.appendChild(msgDiv);
                 });
-            } else {
-                bubble.innerText = msg.content;
+                // For non-animated or already animated: scroll now
+                if (
+                    !(
+                        chatMessages.length &&
+                        chatMessages[chatMessages.length - 1].role === 'assistant' &&
+                        !chatMessages[chatMessages.length - 1].animated
+                    )
+                ) {
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                }
             }
-            msgDiv.appendChild(bubble);
-            chatbotMessages.appendChild(msgDiv);
-        });
-        // For non-animated or already animated: scroll now
-        if (
-            !(
-                chatMessages.length &&
-                chatMessages[chatMessages.length - 1].role === 'assistant' &&
-                !chatMessages[chatMessages.length - 1].animated
-            )
-        ) {
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-    }
 
-    function pushMessage(role, content) {
-        chatMessages.push({ role, content });
-        renderMessages();
-    }
+            function pushMessage(role, content) {
+                chatMessages.push({ role, content });
+                renderMessages();
+            }
 
-    // Toggle chatbot open/close
-    chatbotToggleBtn.addEventListener('click', () => {
-        if (chatbotContainer.style.display === 'flex') {
-            chatbotContainer.style.display = 'none';
-        } else {
-            chatbotContainer.style.display = 'flex';
-            setTimeout(() => chatbotInput.focus(), 200);
-            renderMessages();
-        }
-    });
-    // Close button
-    chatbotCloseBtn.addEventListener('click', () => {
-        chatbotContainer.style.display = 'none';
-    });
-
-    // Send message handler
-    chatbotInputArea.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const msg = chatbotInput.value.trim();
-        if (!msg) return;
-        pushMessage('user', msg);
-        chatbotInput.value = '';
-        chatbotInput.focus();
-
-        // Add loading bubble for bot
-        pushMessage('assistant', '...');
-        renderMessages();
-
-        // Send full chat history (as context), up to the last 10 exchanges to keep prompt concise
-        const contextMessages = chatMessages
-            .filter(m => m.role === 'user' || m.role === 'assistant')
-            .slice(-10)
-            .map(m => ({
-                role: m.role,
-                content: m.content
-            }));
-
-        // Call the backend Gemini API
-        try {
-            const res = await fetch('/api/chatbot', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    message: msg,
-                    history: contextMessages
-                })
+            // Toggle chatbot open/close
+            chatbotToggleBtn.addEventListener('click', () => {
+                if (chatbotContainer.style.display === 'flex') {
+                    chatbotContainer.style.display = 'none';
+                } else {
+                    chatbotContainer.style.display = 'flex';
+                    setTimeout(() => chatbotInput.focus(), 200);
+                    renderMessages();
+                }
             });
-            const data = await res.json();
-            // Remove last "..." loading
-            chatMessages.pop();
-            if (data.reply) {
-                pushMessage('assistant', data.reply);
-            } else {
-                pushMessage('assistant', 'Sorry, I did not get a response.');
+            // Close button
+            chatbotCloseBtn.addEventListener('click', () => {
+                chatbotContainer.style.display = 'none';
+            });
+
+            // Send message handler
+            chatbotInputArea.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const msg = chatbotInput.value.trim();
+                if (!msg) return;
+                pushMessage('user', msg);
+                chatbotInput.value = '';
+                chatbotInput.focus();
+
+                // Add loading bubble for bot
+                pushMessage('assistant', '...');
+                renderMessages();
+
+                // Send full chat history (as context), up to the last 10 exchanges to keep prompt concise
+                const contextMessages = chatMessages
+                    .filter(m => m.role === 'user' || m.role === 'assistant')
+                    .slice(-10)
+                    .map(m => ({
+                        role: m.role,
+                        content: m.content
+                    }));
+
+                // Call the backend Gemini API
+                try {
+                    const res = await fetch('/api/chatbot', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            message: msg,
+                            history: contextMessages
+                        })
+                    });
+                    const data = await res.json();
+                    // Remove last "..." loading
+                    chatMessages.pop();
+                    if (data.reply) {
+                        pushMessage('assistant', data.reply);
+                    } else {
+                        pushMessage('assistant', 'Sorry, I did not get a response.');
+                    }
+                } catch (err) {
+                    chatMessages.pop();
+                    pushMessage('assistant', 'Error contacting Gemini API.');
+                }
+            });
+
+            // Enter key submits, Shift+Enter makes newline
+            chatbotInput.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    chatbotSendBtn.click();
+                }
+            });
+
+            // Autofocus input when opening
+            if (chatbotContainer.style.display === 'flex') {
+                setTimeout(() => chatbotInput.focus(), 200);
             }
-        } catch (err) {
-            chatMessages.pop();
-            pushMessage('assistant', 'Error contacting Gemini API.');
-        }
-    });
 
-    // Enter key submits, Shift+Enter makes newline
-    chatbotInput.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            chatbotSendBtn.click();
-        }
-    });
-
-    // Autofocus input when opening
-    if (chatbotContainer.style.display === 'flex') {
-        setTimeout(() => chatbotInput.focus(), 200);
-    }
-
-})();
+        })();
     </script>
 
     <script>
