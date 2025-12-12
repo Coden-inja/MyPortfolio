@@ -33,7 +33,7 @@ ${lastMsgs.map(m =>
   ).join("\n")}
 Yogesh:`;
 
-  const geminiApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
+  const geminiApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`;
 
   try {
     const geminiResponse = await fetch(geminiApiUrl, {
